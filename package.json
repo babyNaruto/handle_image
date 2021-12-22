@@ -1,0 +1,16 @@
+{
+  "name": "handle_image",
+  "version": "1.0.0",
+  "description": "node.js --v10.15.3\r     modules：\r ## 二，功能\r * 图片上传",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2"
+  }
+}
