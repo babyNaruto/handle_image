@@ -3,9 +3,9 @@
 const childProcess = require('child_process'); // nodeJS 自带
 let exec = childProcess.exec
 
+var bbb = 123
 
-
-viewProcessMessage = function (name) {
+viewProcessMessage = function (name, cb) {
     // process 不用引入，nodeJS 自带
     // 带有命令行的list进程命令是：“cmd.exe /c wmic process list full”
     //  tasklist 是没有带命令行参数的。可以把这两个命令再cmd里面执行一下看一下效果
@@ -25,16 +25,19 @@ viewProcessMessage = function (name) {
                 isInited = !isInited
                 // console.log(processMeg)
                 processPid = processMessage[1]
-                return console.log(processPid)
+                console.log(processPid)
             }
         })
-             return console.log(processPid)
+
     }
 
     )
 }
-let aaa = viewProcessMessage('Xtranslator.exe')
-console.log(aaa)
+
+ viewProcessMessage('Xtranslator.exe',function (msg){})
+
+
+
 
 
 
