@@ -126,14 +126,16 @@ app.use(bodyParser.json())
 
 app.post("/Analyse",(req,res)=> {
     //3.1 请求数据写入request_post.json
-    var resAnalyseData = JSON.stringify(req.body);
-    fs.writeFileSync('/request_post.json', resAnalyseData, function (err) {
-        if (err) {
-            console.error(err);
-        }
-        console.log('----------写入成功-------------');
-    })
+    var reqAnalyseData = JSON.stringify(req.body);
+    try {
+        var fd = fs.openSync('./request_post.json','w')
+        fs.writeFileSync(fd, reqAnalyseData)
+        console.log("---request_post写入成功---")
+    } catch (e) {
+        console.log(e + '写入失败')
+    }
 
+    fs.closeSync(fd)
 
     //3.3 等待算法处理完毕
     function sleep(n) {
@@ -144,23 +146,31 @@ app.post("/Analyse",(req,res)=> {
                 break;
             }
         }
-        // console.log('休眠后：' + new Date().getTime());
     }
     sleep(5000);
 
 
     //3.4 生成结果，将result_post.json数据发送
-    fs.readFile('./result_post.json', function (err, data) {
-        if (err) {
-            return console.error(err);
-        }
+    try{
+         var data = fs.readFileSync("./result_post.json","utf-8");
+         // console.log("data",data);
         var fileData = data.toString();//将二进制的数据转换为字符串
         var resAnalyseData = JSON.parse(fileData);//将字符串转换为json对象
-      //提交响应数据到客户端
+        //提交响应数据到客户端
         res.send(JSON.stringify(resAnalyseData))
-    })
+        console.log("---result发送成功---")
+    }catch(error){
+        console.log("error:",error);
+    }
+
     //3.5 读取结束后删除result_post.json
-    fs.unlinkSync("./bbb.json");
+    try{
+        fs.unlinkSync("./bbb.js");
+        console.log("---result删除成功---")
+    }catch (e) {
+        console.log("error:",e);
+    }
+
 
 
 })
