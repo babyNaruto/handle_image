@@ -128,14 +128,13 @@ app.post("/Analyse",(req,res)=> {
     //3.1 请求数据写入request_post.json
     var reqAnalyseData = JSON.stringify(req.body);
     try {
-        var fd = fs.openSync('./request_post.json','w')
-        fs.writeFileSync(fd, reqAnalyseData)
-        console.log("---request_post写入成功---")
+
+        fs.writeFileSync('./request_post.json', reqAnalyseData)
+        console.log("---request写入成功---")
     } catch (e) {
         console.log(e + '写入失败')
     }
 
-    fs.closeSync(fd)
 
     //3.3 等待算法处理完毕
     function sleep(n) {

@@ -5,13 +5,12 @@
 GET http://127.0.0.1:8081/GetDevInformation
 Accept: application/json
 
-###
 ### 2.获取AI处理模块状态
-GET http://3512i894p8.goho.co/GetDevAnalyseModelStatus?Models=1
+GET http://127.0.0.1:8081/GetDevAnalyseModelStatus?Models=1
 Accept: application/json
 
 ###3.提交AI分析请求
-POST http://3512i894p8.goho.co/Analyse?Model=1
+POST http://127.0.0.1:8081/Analyse?Model=1
 Content-Type: application/json
 
 {
@@ -33,7 +32,7 @@ Content-Type: application/json
 
   ]
 }
-###
+###3.提交AI分析请求
 POST http://127.0.0.1:8081/Analyse?Model=1
 Content-Type: application/json
 
@@ -58,17 +57,15 @@ Content-Type: application/json
 }
 
 ###4.重新加载AI处理模块请求
-PUT http://3512i894p8.goho.co/ReloadAnalyseModels
+PUT http://127.0.0.1:8081/ReloadAnalyseModels
 Accept: application/json
 
 
 ###5.提交AI模块资源初始化请求
-PUT http://3512i894p8.goho.co/InitAnalyseModel
+PUT http://127.0.0.1:8081/InitAnalyseModel
 Accept: application/json
 
-###6.提交AI模块资源释放请求
-PUT http://3512i894p8.goho.co/DeInitAnalyseModel
-Accept: application/json
+
 ###6.提交AI模块资源释放请求
 PUT http://127.0.0.1:8081/DeInitAnalyseModel
 Accept: application/json
